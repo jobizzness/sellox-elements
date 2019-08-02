@@ -8,22 +8,80 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import {
-  html,
-  property,
-  customElement,
-  TemplateResult,
-  LitElement,
-  css
-} from 'lit-element';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-import './cart-modal.scss';
-
-class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], LitElement) {
-  render() {
+class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], PolymerElement) {
+  static get template() {
     return html`
+      <style>
+        :host {
+          display: block;
+          position: fixed;
+          background-color: white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          width: 100%;
+          max-width: 700px;
+          padding: 12px;
+          visibility: hidden;
+          will-change: transform;
+          top: 56px;
+          right: 16px;
+          -webkit-transform: translate3d(calc(100% + 16px), 0, 0);
+          transform: translate3d(calc(100% + 16px), 0, 0);
+          transition-property: visibility, -webkit-transform;
+          transition-property: visibility, transform;
+          transition-duration: 0.2s;
+          transition-delay: 0.1s;
+        }
+
+        :host(.opened) {
+          visibility: visible;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+
+        .layout-horizontal {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .label {
+          font-size: 1rem;
+          color: var(--app-primary-color);
+          font-weight: 500;
+        }
+        .actions {
+          display: flex;
+        }
+        a {
+          text-decoration: none;
+        }
+        .actions > * {
+          margin: 1em;
+        }
+        .checkout {
+          --mdc-theme-primary: #ffffff;
+          background-color: #ff0057 !important;
+        }
+
+        #closeBtn {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+        }
+
+        @media (max-width: 767px) {
+          top: auto;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: auto;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+      </style>
       <div class="layout-horizontal">
         <h1 class="label">Success! You've added this item to your cart.</h1>
       </div>
@@ -47,8 +105,6 @@ class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], LitElement) {
     this.addEventListener('transitionend', e => this._transitionEnd(e));
     this.addEventListener('iron-overlay-canceled', e => this._onCancel(e));
     this.addEventListener('opened-changed', () => {});
-
-    document.addEventListener('add-cart', e => this.open());
   }
 
   _renderOpened() {
