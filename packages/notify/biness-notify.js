@@ -1,12 +1,20 @@
+// TODO: write docs
 /**
- * @license
- * Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
+`biness-notify` is an element for displaying lalalala
+The `fade` option (only valid when `preload` is set) will cause the placeholder
+image/color to be faded out once the image is rendered.
+Examples:
+    `<biness-notify 
+      opened message="someone just sent you something" 
+      type="warn">
+    </biness-notify>`
+Custom property | Description | Default
+----------------|-------------|----------
+`--biness-notify-color` | Sets the color of the label
+`--iron-image-width` | Sets the width of the wrapped image | `auto`
+`--iron-image-height` | Sets the height of the wrapped image | `auto`
+@demo demo/index.html
+*/
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
@@ -34,6 +42,7 @@ export class Notify extends mixinBehaviors(
           color: white;
           will-change: transform;
           top: 14px;
+          right: 8px;
           transform: translate3d(0, calc(-100%), 0);
           transition-property: visibility, -webkit-transform;
           transition-property: visibility, transform;
@@ -54,7 +63,7 @@ export class Notify extends mixinBehaviors(
 
         .label {
           font-size: 1rem;
-          color: var(--app-primary-color);
+          color: var(--biness-notify-color, white);
           font-weight: 500;
         }
 
@@ -68,7 +77,7 @@ export class Notify extends mixinBehaviors(
         }
       </style>
       <div class="layout-horizontal">
-        <h1 class="label">Success! You've seen this message.</h1>
+        <h1 class="label">[[message]]</h1>
       </div>
       <div class="actions"></div>
     `;
@@ -79,6 +88,14 @@ export class Notify extends mixinBehaviors(
       withBackdrop: {
         type: Boolean,
         value: true
+      },
+      message: {
+        type: String,
+        value: "Success! You've seen this message."
+      },
+      type: {
+        type: String,
+        value: 'success'
       }
     };
   }
