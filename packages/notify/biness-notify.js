@@ -18,18 +18,20 @@ class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], PolymerElement) {
       <style>
         :host {
           display: block;
+          border-radius: 56px;
           position: fixed;
-          background-color: white;
+          background: #00bf8f;
+          background: -webkit-linear-gradient(to right, #35b3b9, #00bfa5);
+          background: linear-gradient(to right, #35b3b9, #00bfa5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           width: 100%;
-          max-width: 700px;
-          padding: 12px;
+          max-width: 400px;
+          padding: 12px 24px;
           visibility: hidden;
+          color: white;
           will-change: transform;
-          top: 56px;
-          right: 16px;
-          -webkit-transform: translate3d(calc(100% + 16px), 0, 0);
-          transform: translate3d(calc(100% + 16px), 0, 0);
+          top: 14px;
+          transform: translate3d(0, calc(-100%), 0);
           transition-property: visibility, -webkit-transform;
           transition-property: visibility, transform;
           transition-duration: 0.2s;
@@ -52,19 +54,6 @@ class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], PolymerElement) {
           color: var(--app-primary-color);
           font-weight: 500;
         }
-        .actions {
-          display: flex;
-        }
-        a {
-          text-decoration: none;
-        }
-        .actions > * {
-          margin: 1em;
-        }
-        .checkout {
-          --mdc-theme-primary: #ffffff;
-          background-color: #ff0057 !important;
-        }
 
         #closeBtn {
           position: absolute;
@@ -73,17 +62,10 @@ class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], PolymerElement) {
         }
 
         @media (max-width: 767px) {
-          top: auto;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: auto;
-          -webkit-transform: translate3d(0, 100%, 0);
-          transform: translate3d(0, 100%, 0);
         }
       </style>
       <div class="layout-horizontal">
-        <h1 class="label">Success! You've added this item to your cart.</h1>
+        <h1 class="label">Success! You've seen this message.</h1>
       </div>
       <div class="actions"></div>
     `;
