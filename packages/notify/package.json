@@ -1,5 +1,5 @@
 {
-  "name": "biness-notify",
+  "name": "@jobizzness/biness-notify",
   "main": "biness-notify.js",
   "dependencies": {
     "@polymer/iron-overlay-behavior": "^3.0.2",
@@ -13,5 +13,23 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "wct-mocha": "^1.0.1"
-  }
+  },
+  "description": "simply notify component made with polymer",
+  "version": "0.0.1",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobizzness/biness-elements.git"
+  },
+  "author": "jobizzness",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobizzness/biness-elements/issues"
+  },
+  "homepage": "https://github.com/jobizzness/biness-elements#readme"
 }

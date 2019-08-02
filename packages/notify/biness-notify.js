@@ -12,7 +12,10 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-class Notify extends mixinBehaviors([IronOverlayBehaviorImpl], PolymerElement) {
+export class Notify extends mixinBehaviors(
+  [IronOverlayBehaviorImpl],
+  PolymerElement
+) {
   static get template() {
     return html`
       <style>
