@@ -1,6 +1,7 @@
 {
   "name": "@jobizzness/biness-notify",
   "main": "biness-notify.js",
+  "version": "0.0.4",
   "dependencies": {
     "@polymer/iron-overlay-behavior": "^3.0.2",
     "@polymer/polymer": "^3.0.0",
@@ -15,7 +16,6 @@
     "wct-mocha": "^1.0.1"
   },
   "description": "simply notify component made with polymer",
-  "version": "0.0.3",
   "directories": {
     "test": "test"
   },
