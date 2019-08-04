@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=K2D:400,500"
+      rel="stylesheet"
+    />
+    <title>Biness Elements demo</title>
+
+    <style>
+      @font-face {
+        font-family: 'Pacifico';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Pacifico Regular'), local('Pacifico-Regular'),
+          url(https://fonts.gstatic.com/s/pacifico/v12/Q_Z9mv4hySLTMoMjnk_rCXYhjbSpvc47ee6xR_80Hnw.woff2)
+            format('woff2');
+      }
+      body {
+        margin: 0;
+        /* This is a font-stack that tries to use the system-default sans-serifs first */
+        font-family: 'K2D', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol';
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+        min-height: 100vh;
+      }
+
+      :root {
+        --app-primary-color: #008463;
+        --app-accent-color: #29b88c;
+        --app-secondary-color: black;
+        --app-secondary-background: #f7f7f7;
+        --app-light-text-color: rgba(0, 0, 0, 0.6);
+        --app-accent-color: #8642ff;
+        --app-text-color: black;
+      }
+    </style>
+
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <!-- <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+    </script> -->
+
+    <script type="module" src="./packages/notify/biness-notify.js"></script>
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles"></style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic biness-notify demo</h3>
+
+      <section>
+        <biness-notify
+          opened
+          message="Success! You have seen this message"
+          type="success"
+        ></biness-notify>
+      </section>
+    </div>
+  </body>
+</html>
