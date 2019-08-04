@@ -31,15 +31,11 @@ export class Notify extends mixinBehaviors(
           display: block;
           border-radius: 56px;
           position: fixed;
-          background: #00bf8f;
-          background: -webkit-linear-gradient(to right, #35b3b9, #00bfa5);
-          background: linear-gradient(to right, #35b3b9, #00bfa5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
           width: 100%;
           max-width: 400px;
-          padding: 12px 24px;
+          padding: 8px 24px;
           visibility: hidden;
-          color: white;
           will-change: transform;
           top: 14px;
           right: 8px;
@@ -56,14 +52,50 @@ export class Notify extends mixinBehaviors(
           transform: translate3d(0, 0, 0);
         }
 
+        :host([type='success']) {
+          color: var(--biness-notify-color, #1dc9b7);
+          background: rgba(29, 201, 183, 0.1);
+        }
+
+        :host([type='warn']) {
+          background-color: #ffbc2552;
+          color: var(--biness-notify-color, #ff6a00);
+        }
+
+        :host([type='error']) {
+          background-color: #ff254e52;
+          color: var(--biness-notify-color, #ff0030);
+        }
+
+        :host([type='info']),
+        :host(:not([type])) {
+          background-color: #f9f9fc;
+          color: var(--biness-notify-color, #595d6e);
+        }
+
         .layout-horizontal {
           display: flex;
           flex-direction: row;
+          align-items: center;
         }
 
+        button {
+          outline: 0;
+          border: 0;
+          color: inherit;
+          padding: 8px;
+          background: #0808080a;
+          border-radius: 13px;
+          cursor: pointer;
+          margin: 0 12px;
+        }
+
+        .flex {
+          flex: 1;
+        }
         .label {
           font-size: 1rem;
-          color: var(--biness-notify-color, white);
+          color: var(--biness-notify-color, inherit);
           font-weight: 500;
         }
 
@@ -78,8 +110,11 @@ export class Notify extends mixinBehaviors(
       </style>
       <div class="layout-horizontal">
         <h1 class="label">[[message]]</h1>
+        <span class="flex"></span>
+        <div class="actions">
+          <button on-click="close">close</button>
+        </div>
       </div>
-      <div class="actions"></div>
     `;
   }
 
