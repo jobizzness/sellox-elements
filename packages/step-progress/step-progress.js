@@ -163,7 +163,7 @@ class StepProgress extends LitElement {
     const offset = wrapperWidth / (numberOfSteps - 1);
 
     if (numberOfSteps < 2) {
-      throw new Error('steps is less that the required number');
+      throw new Error('steps are less that the required number');
     }
     // Of all our nodes
     this.nodes$.forEach((node, index) => {
