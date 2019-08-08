@@ -17,8 +17,11 @@ class StepProgress extends LitElement {
       prop1: {
         type: String
       },
-      active: {
+      index: {
         type: Number
+      },
+      status: {
+        type: String
       }
     };
   }
@@ -28,6 +31,7 @@ class StepProgress extends LitElement {
       :host {
         display: block;
         position: relative;
+        padding: 0 8px;
       }
       .wrapper {
         height: 50px;
@@ -40,17 +44,17 @@ class StepProgress extends LitElement {
         height: 5px;
         position: absolute;
         width: 100%;
-        transform: 0.4s linear;
         top: 19px;
       }
-      biness-step-progress-bar::after {
+      biness-step-progress-bar > div.biness-step-progress-bar {
         content: '';
         position: absolute;
         left: 0;
-        transform: translateX(-50%);
+        transform: translateX(-100%);
         width: 100%;
         height: 4px;
         background-color: #0bb1e4;
+        transition: transform 0.4s linear;
       }
       biness-step-progress-node {
         cursor: pointer;
@@ -59,14 +63,18 @@ class StepProgress extends LitElement {
         left: 0;
         transform: translateX(0%);
         border-radius: 50%;
-        padding: 8px 13px;
+        height: 40px;
+        width: 40px;
         border: 4px solid #bde1ec;
         color: #0bb1e4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-      biness-step-progress-node[status='active'] {
+      biness-step-progress-node[class='active'] {
         border-color: #0bb1e4;
       }
-      biness-step-progress-node[status='done'] {
+      biness-step-progress-node[class='done'] {
         background: #0bb1e4;
         color: white;
       }
@@ -77,34 +85,85 @@ class StepProgress extends LitElement {
     super();
     this.nodes$ = [];
     this.bar$ = null;
+    this.steps = [];
+    this.index = 0;
   }
 
   render() {
     return html`
-      <h2>Hello ${this.prop1}!</h2>
       <section class="wrapper">
         <!-- Start State -->
-        <biness-step-progress-bar></biness-step-progress-bar>
+        <biness-step-progress-bar>
+          <div class="biness-step-progress-bar"></div>
+        </biness-step-progress-bar>
 
-        <biness-step-progress-node status="done">1</biness-step-progress-node>
-        <biness-step-progress-node status="active">2</biness-step-progress-node>
-        <biness-step-progress-node>3</biness-step-progress-node>
+        ${this.steps.map(
+          step => html`
+            <biness-step-progress-node
+              @click=${e => (this.index = step.value)}
+              .className=${this.computeStatus(step)}
+              >${step.label}</biness-step-progress-node
+            >
+          `
+        )}
       </section>
     `;
   }
 
-  firstUpdated() {
-    this.prop1 = 'Step progress';
-    this.init();
+  computeStatus(step) {
+    if (step.value === this.index) {
+      return 'active';
+    } else if (step.value < this.index) {
+      return 'done';
+    } else {
+      return '';
+    }
   }
 
-  setActiveNode() {}
+  firstUpdated() {
+    this.steps = [
+      { value: 0, label: 1, title: 'Start' },
+      { value: 1, label: 2, title: 'Start' },
+      { value: 2, label: 3, title: 'Start' },
+      { value: 3, label: 4, title: 'End' }
+    ];
+  }
+
+  set active(val) {
+    this.index = val;
+    this._setActiveNode(val);
+  }
+
+  _setActiveNode(index = this.index) {
+    let translate;
+    const numberOfSteps = this.nodes$.length;
+    const wrapperWidth = this.wrapper$.offsetWidth;
+    const offset = wrapperWidth / numberOfSteps;
+
+    if (index === 0) {
+      translate = wrapperWidth;
+    } else {
+      translate = wrapperWidth - offset * index * 1.4; // dont know why
+    }
+
+    this.bar$.setAttribute('style', `transform: translateX(${-translate}px)`);
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+
+    this.init();
+  }
 
   init() {
     this.nodes$ = this.shadowRoot.querySelectorAll('biness-step-progress-node');
     this.wrapper$ = this.shadowRoot.querySelector('.wrapper');
+    this.bar$ = this.shadowRoot.querySelector('.biness-step-progress-bar');
+    this._setActiveNode();
     const numberOfSteps = this.nodes$.length;
-    const wrapperWidth = this.wrapper$.offsetWidth - 43;
+    const wrapperWidth = this.wrapper$.offsetWidth - 48;
     const offset = wrapperWidth / numberOfSteps;
 
     // Of all our nodes
@@ -123,6 +182,11 @@ class StepProgress extends LitElement {
     });
   }
 
+  /**
+   *
+   * @param {*} node
+   * @param {*} numberOfSteps
+   */
   _isLastNode(node, numberOfSteps) {
     return node === numberOfSteps - 1;
   }

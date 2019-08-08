@@ -30,6 +30,7 @@
         -webkit-font-smoothing: antialiased;
         line-height: 1.5;
         min-height: 100vh;
+        background-color: #fafafa;
       }
 
       :root {
@@ -41,6 +42,29 @@
         --app-accent-color: #8642ff;
         --app-text-color: black;
       }
+      h3 {
+        font-size: 1.5rem;
+        color: #1c5567;
+        font-weight: 500;
+      }
+      h2 {
+        font-size: 1rem;
+        color: #1c5567;
+        font-weight: 500;
+      }
+      .content {
+        max-width: 917px;
+        margin: 0 auto;
+      }
+
+      .component-wrapper {
+        padding: 1em;
+        border-radius: 4px;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+        margin-bottom: 3em;
+      }
     </style>
 
     <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
@@ -51,6 +75,10 @@
     </script> -->
 
     <script type="module" src="./packages/notify/biness-notify.js"></script>
+    <script
+      type="module"
+      src="./packages/step-progress/step-progress.js"
+    ></script>
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles"></style>
@@ -58,14 +86,25 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic biness-notify demo</h3>
+      <section class="content">
+        <header>
+          <h3>Biness Elements Demo</h3>
+        </header>
+        <!-- Notify -->
+        <div class="card component-wrapper">
+          <h2>Biness Notify</h2>
+          <biness-notify
+            opened
+            message="Success! You have seen this message"
+            type="success"
+          ></biness-notify>
+        </div>
 
-      <section>
-        <biness-notify
-          opened
-          message="Success! You have seen this message"
-          type="success"
-        ></biness-notify>
+        <!-- Step Progress -->
+        <div class="card component-wrapper">
+          <h2>Biness Step Progress</h2>
+          <biness-step-progress index="1"> </biness-step-progress>
+        </div>
       </section>
     </div>
   </body>
