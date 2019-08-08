@@ -3,7 +3,8 @@
   "description": "progress based on steps for forms",
   "main": "step-progress.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "lit-element": "^2.2.1"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
