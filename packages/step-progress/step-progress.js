@@ -138,22 +138,18 @@ class StepProgress extends LitElement {
     let translate;
     const numberOfSteps = this.nodes$.length;
     const wrapperWidth = this.wrapper$.offsetWidth;
-    const offset = wrapperWidth / numberOfSteps;
+    const offset = wrapperWidth / (numberOfSteps - 1); // we need n - 1 edges
 
     if (index === 0) {
       translate = wrapperWidth;
     } else {
-      translate = wrapperWidth - offset * index * 1.4; // dont know why
+      translate = wrapperWidth - offset * this.index; // dont know why
     }
 
     this.bar$.setAttribute('style', `transform: translateX(${-translate}px)`);
   }
 
   updated(changedProperties) {
-    changedProperties.forEach((oldValue, propName) => {
-      console.log(`${propName} changed. oldValue: ${oldValue}`);
-    });
-
     this.init();
   }
 
@@ -164,8 +160,11 @@ class StepProgress extends LitElement {
     this._setActiveNode();
     const numberOfSteps = this.nodes$.length;
     const wrapperWidth = this.wrapper$.offsetWidth - 48;
-    const offset = wrapperWidth / numberOfSteps;
+    const offset = wrapperWidth / (numberOfSteps - 1);
 
+    if (numberOfSteps < 2) {
+      throw new Error('steps is less that the required number');
+    }
     // Of all our nodes
     this.nodes$.forEach((node, index) => {
       let translate;
@@ -174,7 +173,7 @@ class StepProgress extends LitElement {
       if (this._isLastNode(index, numberOfSteps)) {
         translate = wrapperWidth;
       } else {
-        translate = offset * 1.4 * index;
+        translate = offset * index;
       }
 
       // Set the style for this node
