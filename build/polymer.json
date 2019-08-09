@@ -1,0 +1,37 @@
+{
+  "entrypoint": "index.html",
+  "shell": "app.js",
+  "fragments": [],
+  "sources": [
+    "images/**/*",
+    "index.html",
+    "app.js"
+  ],
+  "extraDependencies": [
+    "bower_components/webcomponentsjs/*.js",
+    "node_modules/@webcomponents/webcomponentsjs/**"
+  ],
+  "builds": [
+    {
+      "name": "esm-bundled",
+      "browserCapabilities": [
+        "es2015",
+        "modules"
+      ],
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      },
+      "bundle": true,
+      "addServiceWorker": false
+    }
+  ],
+  "npm": true,
+  "componentDir": "node_modules/",
+  "moduleResolution": "node"
+}

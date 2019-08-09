@@ -1,6 +1,25 @@
 {
-  "npm": true,
-  "lint": {
-    "rules": ["polymer-3"]
-  }
+  "entrypoint": "index.html",
+  "shell": "app.js",
+  "sources": ["images/**/*"],
+  "extraDependencies": ["node_modules/@webcomponents/webcomponentsjs/**"],
+  "builds": [
+    {
+      "name": "esm-bundled",
+      "browserCapabilities": ["es2015", "modules"],
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      },
+      "bundle": true,
+      "addServiceWorker": false
+    }
+  ],
+  "moduleResolution": "node",
+  "npm": true
 }
