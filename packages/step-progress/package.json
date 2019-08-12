@@ -1,5 +1,5 @@
 {
-  "name": "@jobizzness/step-progress",
+  "name": "@jobizzness/biness-step-progress",
   "description": "progress based on steps for forms",
   "version": "0.0.1",
   "main": "step-progress.js",

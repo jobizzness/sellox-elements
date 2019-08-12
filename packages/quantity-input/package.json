@@ -1,5 +1,5 @@
 {
-  "name": "@jobizzness/quantity-input",
+  "name": "@jobizzness/biness-quantity-input",
   "description": "shop quantity input",
   "main": "quantity-input.js",
   "version": "0.0.1",
@@ -25,7 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/jobizzness/biness-elements.git"
   },
-  "author": "",
+  "author": "jobizzness",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jobizzness/biness-elements/issues"
