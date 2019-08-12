@@ -1,7 +1,8 @@
 {
-  "name": "quantity-input",
+  "name": "@jobizzness/quantity-input",
   "description": "shop quantity input",
   "main": "quantity-input.js",
+  "version": "0.0.1",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
     "lit-element": "^2.2.1"
@@ -13,5 +14,21 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "wct-mocha": "^1.0.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobizzness/biness-elements.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobizzness/biness-elements/issues"
+  },
+  "homepage": "https://github.com/jobizzness/biness-elements#readme"
 }

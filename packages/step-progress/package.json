@@ -1,6 +1,7 @@
 {
-  "name": "step-progress",
+  "name": "@jobizzness/step-progress",
   "description": "progress based on steps for forms",
+  "version": "0.0.1",
   "main": "step-progress.js",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
@@ -13,5 +14,21 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "wct-mocha": "^1.0.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobizzness/biness-elements.git"
+  },
+  "author": "jobizzness",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobizzness/biness-elements/issues"
+  },
+  "homepage": "https://github.com/jobizzness/biness-elements#readme"
 }
