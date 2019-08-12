@@ -3,7 +3,8 @@
   "description": "shop quantity input",
   "main": "quantity-input.js",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "lit-element": "^2.2.1"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
